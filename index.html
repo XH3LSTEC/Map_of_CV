@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Mapa Turístico de Cabo Verde</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    #mapa {
+      position: relative;
+      display: inline-block;
+    }
+    .ilha {
+      position: absolute;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .ilha:hover {
+      border: 2px solid blue;
+    }
+    #info {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Mapa Turístico de Cabo Verde</h1>
+
+  <div id="mapa">
+    <img src="mapa-cabo-verde.jpg" alt="Mapa de Cabo Verde" width="600">
+    <!-- Área clicável para Santiago -->
+    <div class="ilha" id="santiago" style="top: 300px; left: 250px; width: 50px; height: 50px;"></div>
+    <!-- Adicione outras ilhas aqui -->
+  </div>
+
+  <div id="info">
+    <h2 id="titulo">Informações da Ilha</h2>
+    <p id="descricao"></p>
+  </div>
+
+  <script>
+    // Dados das ilhas
+    const dadosIlhas = {
+      santiago: {
+        titulo: "Ilha de Santiago",
+        descricao: "Santiago é a maior ilha de Cabo Verde, conhecida por sua rica história e cultura vibrante. A capital, Praia, está localizada aqui."
+      }
+      // Adicione outras ilhas aqui
+    };
+
+    // Função para exibir informações da ilha
+    function mostrarInfo(id) {
+      const info = dadosIlhas[id];
+      if (info) {
+        document.getElementById('titulo').textContent = info.titulo;
+        document.getElementById('descricao').textContent = info.descricao;
+        document.getElementById('info').style.display = 'block';
+      }
+    }
+
+    // Adiciona evento de clique às ilhas
+    document.querySelectorAll('.ilha').forEach(function(elemento) {
+      elemento.addEventListener('click', function() {
+        mostrarInfo(this.id);
+      });
+    });
+  </script>
+
+</body>
+</html>
